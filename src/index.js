@@ -1,1 +1,1 @@
-console.log('npm init1')
+console.log('npm in1it1')
