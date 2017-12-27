@@ -2,12 +2,12 @@ const path = require('path')
 const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-    // publicPath: '/',
     entry:{
-        main: path.join(__dirname, './src/index.js'),
-        vender: ['react', 'react-dom']
+        main: ['react-hot-loader/patch', path.join(__dirname, './src/index.js')],
+        vender: ['react', 'react-dom', 'react-router-dom']
     },
     output: {
+        publicPath : '/',
         path: path.join(__dirname, 'dist'),
         filename: '[name].[hash].js',
         chunkFilename: '[name].[chunkhash].js'
@@ -50,5 +50,6 @@ module.exports = {
 // 5. 缓存技术,在output.filename,加上hash
 // 6. babel加载，新建.babelrc， module.rules 增加，这里正则有问题？ 关键词test use include 
 // 7. 提取公共模块， new webpack.optimize.CommonChunkPlugin({ name: '' })
-// 8. 热模块替换
+// 8. 热模块替换 hot webpack.HotModlueReplacePlugin() react-hot-loader(开发)
+// 9. router路由
 

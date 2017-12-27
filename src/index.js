@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import App from './App'
 
+renderHotModuleReplacement(App)
 if (module.hot) {
-    module.hot.accept()
+    module.hot.accept('./App', () => {
+        const App  = require('./App').default
+        renderHotModuleReplacement(App)
+    })
 }
-
-ReactDOM.render(<h1>rea1ct</h1>, document.getElementById('root'))
+function renderHotModuleReplacement(RootElement) {
+    ReactDOM.render(
+        <AppContainer>
+            <RootElement/>
+        </AppContainer>
+        , document.getElementById('root'))
+}
